@@ -1,208 +1,92 @@
 <?php
-/**
- * Class for all information about one slot (includes ability upgrades if provided)
- *
- * @author kronus
- * @package models
- */
 class slot extends stat_object {
-    /**
-     * inner identifier used in local queries (web mappers don't feel it!)
-     * @var int
-     */
-    protected $_id;
-    /**
-     * account_id - the player's 32-bit Steam ID - will be set to "4294967295" if the player has set their account to private.
-     * @var int
-     */
-    protected $_account_id;
-    /**
-     * an 8-bit unsigned int: if the left-most bit is set, the player was on dire. the two right-most bits represent the player slot (0-4)
-     * @var int
-     */
-    protected $_player_slot;
-    /**
-     * the numeric ID of the hero that the player used.
-     * @var int
-     */
-    protected $_hero_id;
-    /**
-     * the numeric ID of the item that player finished with in their top-left slot.
-     * @var int
-     */
-    protected $_item_0;
-    /**
-     * the numeric ID of the item that player finished with in their top-center slot.
-     * @var int
-     */
-    protected $_item_1;
-    /**
-     * the numeric ID of the item that player finished with in their top-right slot.
-     * @var int
-     */
-    protected $_item_2;
-    /**
-     * the numeric ID of the item that player finished with in their bottom-left slot.
-     * @var int
-     */
-    protected $_item_3;
-    /**
-     * the numeric ID of the item that player finished with in their bottom-center slot.
-     * @var int
-     */
-    protected $_item_4;
-    /**
-     * the numeric ID of the item that player finished with in their bottom-right slot.
-     * @var int
-     */
-    protected $_item_5;
-    /**
-     * the number of kills the player got.
-     * @var int
-     */
-    protected $_kills;
-    /**
-     * the number of times the player died.
-     * @var int
-     */
-    protected $_deaths;
-    /**
-     * the number of assists the player got.
-     * @var int
-     */
-    protected $_assists;
-    /**
-     * NULL - player is a bot.
-     * 2 - player abandoned game.
-     * 1 - player left game after the game has become safe to leave.
-     * 0 - Player stayed for the entire match.
-     *
-     * @var int
-     */
-    protected $_leaver_status;
-    /**
-     * the amount of gold the player had left at the end of the match
-     * @var int
-     */
-    protected $_gold;
-    /**
-     * the number of times a player last-hit a creep
-     * @var int
-     */
-    protected $_last_hits;
-    /**
-     * the number of times a player denied a creep
-     * @var int
-     */
-    protected $_denies;
-    /**
-     * the player's total gold/min
-     * @var int
-     */
-    protected $_gold_per_min;
-    /**
-     * the player's total xp/min
-     * @var int
-     */
-    protected $_xp_per_min;
-    /**
-     * the total amount of gold the player spent over the entire match
-     * @var int
-     */
-    protected $_gold_spent;
-    /**
-     * the amount of damage the player dealt to heroes
-     * @var int
-     */
-    protected $_hero_damage;
-    /**
-     * the amount of damage the player dealt to towers
-     * @var int
-     */
-    protected $_tower_damage;
-    /**
-     * the amount of damage on other players that the player healed
-     * @var int
-     */
-    protected $_hero_healing;
-    /**
-     * the player's final level
-     * @var int
-     */
-    protected $_level;
-    /**
-     * the numeric match ID
-     * @var int
-     */
-    protected $_match_id;
-    /**
-     * Array of ability upgrades for player in this slot (can be empty)
-     * @var array
-     */
-    protected $_abilities_upgrade = array();
-
-    /**
-     * Array of items ids of the units like Spirit Bear
-     * @var array
-     */
-    protected $_additional_unit_items = array();
-
-    /**
-     * Set array of ability upgrades (used in mappers)
-     * @param array $data
-     * @return slot
-     */
-    public function set_abilities_upgrade($data) {
-        $this->_abilities_upgrade = $data;
-        return $this;
-    }
-
-    /**
-     * Return array of ability upgrades
-     * @return array
-     */
-    public function get_abilities_upgrade() {
-        return $this->_abilities_upgrade;
-    }
-
-    /**
-     * Set array of additional unit items ids
-     * @param array $data
-     * @return slot
-     */
-    public function set_additional_unit_items(array $data) {
-        $this->_additional_unit_items = $data;
-        return $this;
-    }
-
-    /**
-     * Get array of additional unit items ids
-     * @return array
-     */
-    public function get_additional_unit_items() {
-        return $this->_additional_unit_items;
-    }
-
-    /**
-     * Remove item from additional unit items
-     * @param int $item_id
-     * @return slot
-     */
-    public function remove_additional_unit_item($item_id) {
-        foreach($this->_additional_unit_items as $k=>$id) {
-            if ($id === $item_id) {
-                unset($this->_additional_unit_items[$k]);
-                break;
-            }
-        }
-        return $this;
-    }
-
-    /**
-     * Just empty construct
-     * Don't use me directly!
-     */
-    public function __construct() {
-
-    }
+	protected $_teamId;
+	protected $_spell1Id;
+	protected $_spell2Id;
+	protected $_championId;
+	protected $_skinIndex;
+	protected $_profileIconId;
+	protected $_summonerName;
+	protected $_isBot;
+	
+	/**
+	 * variables from statsJSON array
+	 */
+	protected $_assists;
+	protected $_barracks_killed;
+	protected $_champions_killed;
+	protected $_consumables_purchased;
+	protected $_double_kills;
+	protected $_exp;
+	protected $_friendly_dampen_lost;
+	protected $_friendly_hq_lost;
+	protected $_friendly_turret_lost;
+	protected $_gold_earned;
+	protected $_gold_spent;
+	protected $_hq_killed;
+	protected $_id;
+	protected $_item0;
+	protected $_item1;
+	protected $_item2;
+	protected $_item3;
+	protected $_item4;
+	protected $_item5;
+	protected $_items_purchased;
+	protected $_killing_sprees;
+	protected $_largest_critical_strike;
+	protected $_largest_killing_spree;
+	protected $_largest_multi_kill;
+	protected $_level;
+	protected $_longest_time_spent_living;
+	protected $_magic_damage_dealt_player;
+	protected $_magic_damage_dealt_to_champions;
+	protected $_magic_damage_taken;
+	protected $_minions_killed;
+	protected $_name;
+	protected $_neutral_minions_killed;
+	protected $_neutral_minions_killed_enemy_jungle;
+	protected $_neutral_minions_killed_your_jungle;
+	protected $_num_deaths;
+	protected $_penta_kills;
+	protected $_physical_damage_dealt_player;
+	protected $_physical_damage_dealt_to_champions;
+	protected $_physical_damage_taken;
+	protected $_ping;
+	protected $_quadra_kills;
+	protected $_sight_wards_bought;
+	protected $_skin;
+	protected $_spell1_cast;
+	protected $_spell2_cast;
+	protected $_spell3_cast;
+	protected $_spell4_cast;
+	protected $_summon_spell1_cast;
+	protected $_summon_spell2_cast;
+	protected $_super_monsters_killed;
+	protected $_team;
+	protected $_time_of_from_last_disconnect;
+	protected $_time_played;
+	protected $_time_spent_disconnected;
+	protected $_total_damage_dealt;
+	protected $_total_damage_dealt_to_champions;
+	protected $_total_damage_taken;
+	protected $_total_heal;
+	protected $_total_time_crowd_control;
+	protected $_total_time_spent_dead;
+	protected $_total_units_healed;
+	protected $_triple_kills;
+	protected $_true_damage_dealt_player;
+	protected $_true_damage_dealt_to_champions;
+	protected $_true_damage_taken;
+	protected $_turrets_killed;
+	protected $_unreal_kills;
+	protected $_vision_wards_bought_in_game;
+	protected $_ward_killed;
+	protected $_ward_placed;
+	protected $_was_afk;
+	protected $_was_afk_after_failed_surrender;
+	protected $_win;
+	
+	public function __construct() {
+	}
 }
+?>

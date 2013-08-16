@@ -469,3 +469,4 @@ class db{
         return self::$_link_id->exec($query);
     }
 }
+?>

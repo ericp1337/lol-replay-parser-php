@@ -95,9 +95,7 @@ class request {
         $ch = curl_init();
         $url = $this->_url;
         $d = '';
-        $this->_params['format'] = 'xml';
         $this->_params['key'] = API_KEY;
-        $this->_params['language'] = LANGUAGE;
         foreach ($this->_params as $key=>$value) {
             $d .= $key.'='.$value.'&';
         }
@@ -113,13 +111,7 @@ class request {
 
         $r = curl_exec($ch);
         curl_close($ch);
-        libxml_use_internal_errors(true);
-        try {
-            $r = new SimpleXMLElement($r);
-        }
-        catch(Exception $e) {
-            return null;
-        }
+		$r = json_decode($r, true);
         return $r;
     }
 }

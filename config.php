@@ -1,10 +1,7 @@
 <?php
 
-// dota2 api key (you can get_info it here - http://steamcommunity.com/dev/apikey)
-define ('API_KEY', '*******************');
-
-//The language to retrieve results in (see http://en.wikipedia.org/wiki/ISO_639-1 for the language codes (first two characters) and http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes for the country codes (last two characters))
-define ('LANGUAGE', 'en_us');
+// get an api key from https://www.mashape.com/dylziez/league-of-legends#!documentation
+define ('API_KEY', '');
 
 error_reporting(0);
 
@@ -22,9 +19,9 @@ class config {
      */
     private static $_data = array(
         'db_user' => 'root',
-        'db_pass' => 'KronuS',
+        'db_pass' => '',
         'db_host' => 'localhost',
-        'db_name' => 'dota2',
+        'db_name' => 'test',
         'db_table_prefix' => ''
     );
 
@@ -34,10 +31,13 @@ class config {
      */
     private function __construct() {}
     public static function init() {
+    	//include unirest-php library
+    	require_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'lib/unirest-php/lib/Unirest.php');
+		
         self::$_data['base_path'] = dirname(__FILE__).DIRECTORY_SEPARATOR.'includes';
         $db = db::obtain(self::get('db_host'), self::get('db_user'), self::get('db_pass'), self::get('db_name'), self::get('db_table_prefix'));
         if (!$db->connect_pdo()) {
-            die();
+            die('Could Not Connect To Database!');
         };
     }
     /**
@@ -77,3 +77,4 @@ function scan($path = '.', $class) {
     }
     closedir($dh);
 }
+?>
