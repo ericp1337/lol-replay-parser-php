@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.11.1
+-- version 4.0.9
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 02, 2013 at 06:29 PM
--- Server version: 5.5.32
--- PHP Version: 5.2.17
+-- Generation Time: Dec 09, 2013 at 09:23 PM
+-- Server version: 5.5.34-0ubuntu0.12.04.1
+-- PHP Version: 5.3.10-1ubuntu3.8
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `compuuq1_dev`
+-- Database: `cakephp`
 --
 
 -- --------------------------------------------------------
@@ -26,7 +26,6 @@ SET time_zone = "+00:00";
 -- Table structure for table `champions`
 --
 
-DROP TABLE IF EXISTS `champions`;
 CREATE TABLE IF NOT EXISTS `champions` (
   `version` varchar(256) NOT NULL,
   `id` varchar(256) NOT NULL,
@@ -63,6 +62,27 @@ CREATE TABLE IF NOT EXISTS `champions` (
   `attackspeedoffset` float NOT NULL,
   `attackspeedperlevel` float NOT NULL,
   PRIMARY KEY (`key`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `items`
+--
+
+CREATE TABLE IF NOT EXISTS `items` (
+  `id` bigint(20) NOT NULL,
+  `name` varchar(256) NOT NULL,
+  `description` varchar(256) NOT NULL,
+  `plaintext` varchar(256) NOT NULL,
+  `full` varchar(256) NOT NULL,
+  `sprite` varchar(256) NOT NULL,
+  `base` varchar(256) NOT NULL,
+  `purchasable` tinyint(1) NOT NULL,
+  `total` bigint(20) NOT NULL,
+  `sell` bigint(20) NOT NULL,
+  `FlatMovementSpeedMod` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
