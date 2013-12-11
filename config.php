@@ -1,7 +1,9 @@
 <?php
-
 // get an api key from https://developer.riotgames.com
 define ('API_KEY', '');
+// default region for api requests
+// regions fully supported: na, euw, eune
+define('REGION', 'na');
 
 error_reporting(0);
 
@@ -18,10 +20,10 @@ class config {
      * @var array
      */
     private static $_data = array(
-        'db_user' => 'root',
+        'db_user' => 'lol-replay-parse',
         'db_pass' => '',
         'db_host' => 'localhost',
-        'db_name' => 'test',
+        'db_name' => 'lol_replay_parser',
         'db_table_prefix' => ''
     );
 
