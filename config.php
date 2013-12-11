@@ -1,6 +1,6 @@
 <?php
 
-// get an api key from https://www.mashape.com/dylziez/league-of-legends#!documentation
+// get an api key from https://developer.riotgames.com
 define ('API_KEY', '');
 
 error_reporting(0);
@@ -31,9 +31,6 @@ class config {
      */
     private function __construct() {}
     public static function init() {
-    	//include unirest-php library
-    	require_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'lib/unirest-php/lib/Unirest.php');
-		
         self::$_data['base_path'] = dirname(__FILE__).DIRECTORY_SEPARATOR.'includes';
         $db = db::obtain(self::get('db_host'), self::get('db_user'), self::get('db_pass'), self::get('db_name'), self::get('db_table_prefix'));
         if (!$db->connect_pdo()) {
