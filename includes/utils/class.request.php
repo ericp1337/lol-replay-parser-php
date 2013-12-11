@@ -95,7 +95,7 @@ class request {
         $ch = curl_init();
         $url = $this->_url;
         $d = '';
-        $this->_params['key'] = API_KEY;
+        $this->_params['api_key'] = API_KEY;
         foreach ($this->_params as $key=>$value) {
             $d .= $key.'='.$value.'&';
         }
