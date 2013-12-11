@@ -1,0 +1,56 @@
+{
+	"queueId": [
+		{
+			"id": 2,
+			"name": "Normal 5v5 Blind Pick"
+		},
+		{
+			"id": 4,
+			"name": "Ranked Solo 5v5"
+		},
+		{
+			"id": 7,
+			"name": "Coop vs AI 5v5"
+		},
+		{
+			"id": 8,
+			"name": "Normal 3v3"
+		},
+		{
+			"id": 14,
+			"name": "Normal 5v5 Draft Pick"
+		},
+		{
+			"id": 16,
+			"name": "Dominion 5v5 Blind Pick"
+		},
+		{
+			"id": 17,
+			"name": "Dominion 5v5 Draft Pick"
+		},
+		{
+			"id": 25,
+			"name": "Dominion Coop vs AI"
+		},
+		{
+			"id": 41,
+			"name": "Ranked Team 3v3"
+		},
+		{
+			"id": 42,
+			"name": "Ranked Team 5v5"
+		},
+		{
+			"id": 52,
+			"name": "Twisted Treeline Coop vs AI"
+		},
+		{
+			"id": 65,
+			"name": "ARAM"
+		},
+		{
+			"id": 67,
+			"name": "ARAM Coop vs AI"
+		}
+	]
+}

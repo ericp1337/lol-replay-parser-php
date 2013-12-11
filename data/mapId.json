@@ -1,0 +1,39 @@
+{
+	"mapId": [
+		{
+			"id": 1,
+			"name": "Summoner's Rift",
+			"notes": "Summer Variant"
+		},
+		{
+			"id": 2,
+			"name": "Summoner's Rift",
+			"notes": "Autumn Variant"
+		},
+		{
+			"id": 3,
+			"name": "The Proving Grounds",
+			"notes": "Tutorial Map"
+		},
+		{
+			"id": 4,
+			"name": "Twisted Treeline",
+			"notes": "Original Version"
+		},
+		{
+			"id": 8,
+			"name": "The Crystal Scar",
+			"notes": "Dominion Map"
+		},
+		{
+			"id": 10,
+			"name": "Twisted Treeline",
+			"notes": "Current Version"
+		},
+		{
+			"id": 12,
+			"name": "Howling Abyss",
+			"notes": "ARAM Map"
+		}
+	]
+}

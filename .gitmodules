@@ -1,3 +1,0 @@
-[submodule "lib/unirest-php"]
-	path = lib/unirest-php
-	url = https://github.com/Mashape/unirest-php.git

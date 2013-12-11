@@ -1,0 +1,20 @@
+{
+	"gameType": [
+		{
+			"gameType": "CUSTOM_GAME",
+			"description": "All Custom Games"
+		},
+		{
+			"gameType": "MATCHED_GAME",
+			"description": "All queues against other summoners"
+		},
+		{
+			"gameType": "CO_OP_VS_AI_GAME",
+			"description": "All queues against bots"
+		},
+		{
+			"gameType": "TUTORIAL_GAME",
+			"description": "All tutorial games"
+		}
+	]
+}
