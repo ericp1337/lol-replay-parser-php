@@ -12,10 +12,10 @@ class champion_mapper_db
 	public function load($champion_id = null)
 	{
 		if(!is_null($champion_id))
-			$this->_id;
+			$this->_id = intval( $champion_id );
 		
 		$db = db::obtain();
-		$champion_query = 'SELECT * FROM ' . db::real_tablename('champions') . ' WHERE id=?';
+		$champion_query = 'SELECT * FROM ' . db::real_tablename('champions') . ' WHERE id = ?';
 		$champion_info = $db->query_first_pdo($champion_query, array($this->get_id()));
 		
 		$champion = new champion();
@@ -34,21 +34,21 @@ class champion_mapper_db
 	
 	private function update($champion)
 	{
-		$db = $db::obtain();
-		$db->update_pdo(db::realtablename('champions'), $champion->get_data_array(), array('id' => $champion->get('id')));
+		$db = db::obtain();
+		$db->update_pdo(db::real_tablename('champions'), $champion->get_data_array(), array('id' => $champion->get('id')));
 	}
 	
 	private function insert($champion)
 	{
-		$db = $db::obtain();
-		$db->insert_pdo(db::realtablename('champions'), $champion->get_data_array());
+		$db = db::obtain();
+		$db->insert_pdo(db::real_tablename('champions'), $champion->get_data_array());
 	}
 	
-	private function champion_exists($id)
+	public static function champion_exists($id)
 	{
 		$id = intval($id);
 		$db = db::obtain();
-		$r = $db->query_first_pdo('SELECT id FROM ' . db::realtablename('champions') . ' WHERE id = ?', array($id));
+		$r = $db->query_first_pdo('SELECT id FROM ' . db::real_tablename('champions') . ' WHERE id = ?', array($id));
 		
 		return ((bool)$r);
 	}
