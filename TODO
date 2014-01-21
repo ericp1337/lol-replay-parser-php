@@ -1,0 +1,4 @@
+* finish implementing parser api class
+* convert all api calls to the official Riot API
+* Write up a test.php file with different tasks to test.
+* Write up documentation on doing various things in the Wiki.

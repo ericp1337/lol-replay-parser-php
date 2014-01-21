@@ -4,25 +4,24 @@ class heroes_mapper_web {
 	public function __construct() {
 
 	}
-	
-	private function flatten($a) {
-	}
 
 	/**
 	 * @return stdObject | detailed hero info
+	 * @param bool freeToPlay | Optional filter param to retrieve only free to play champions.
 	 */
-	public function load() {
-		$response = Unirest::get("https://teemojson.p.mashape.com/datadragon/champion", array("X-Mashape-Authorization" => API_KEY));
+	public function load($freeToPlay = false) {
+		$request = new request('https://prod.api.pvp.net/api/lol/na/v1.1/champion', array('freeToPlay' => $freeToPlay));
+		$heroes = $request->send();
+		$heroes = $heroes['champions'];
 
-		$heroes = get_object_vars($response->body->data);
 		$r = array();
-		foreach($heroes as $k => $v) {
+		foreach ($heroes as $k => $v) {
 			$tmp = new hero();
-			$res[$k] = functions::flatten_array(get_object_vars($v));
-			$tmp->set_array($res[$k]);
-			$r[$k] = $tmp;
+			$tmp->set_array($v);
+			$r[$tmp->get('id')] = $tmp;
+			//set champion id as array id
 		}
-		
+
 		return $r;
 	}
 
