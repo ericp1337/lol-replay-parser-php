@@ -1,11 +1,11 @@
 <?php
 /**
- * Class represents basic functionality for sending request to DotA2 API service and receive response
+ * Class represents basic functionality for sending request to DotA2 API service and receive response.
  *
  * @author kronus
- * @package utils
  */
-class request {
+class request
+{
     /**
      * @var string
      */
@@ -16,94 +16,114 @@ class request {
     private $_params;
 
     /**
-     * Get url
+     * Get url.
+     *
      * @return string
      */
-    public function get_url() {
+    public function get_url()
+    {
         return $this->_url;
     }
 
     /**
-     * Set url
+     * Set url.
+     *
      * @param string $url
+     *
      * @return request
      */
-    public function set_url($url) {
-        $this->_url = (string)$url;
+    public function set_url($url)
+    {
+        $this->_url = (string) $url;
+
         return $this;
     }
 
     /**
-     * Get all request parameters
+     * Get all request parameters.
+     *
      * @return array
      */
-    public function get_all_params() {
+    public function get_all_params()
+    {
         return $this->_params;
     }
 
     /**
-     * Get request parameter by its name
+     * Get request parameter by its name.
+     *
      * @param string $name
+     *
      * @return string | null
      */
-    public function get_parameter($name) {
-        $name = (string)$name;
+    public function get_parameter($name)
+    {
+        $name = (string) $name;
         if (isset($this->_params[$name])) {
             return $this->_params[$name];
         }
-        return null;
     }
 
     /**
-     * Set parameter by its name and value
+     * Set parameter by its name and value.
+     *
      * @param string $name
      * @param string $value
+     *
      * @return request
      */
-    public function set_parameter($name, $value) {
-        $name = (string)$name;
-        $value = (string)$value;
+    public function set_parameter($name, $value)
+    {
+        $name = (string) $name;
+        $value = (string) $value;
         $this->_params[$name] = $value;
+
         return $this;
     }
 
     /**
-     * Set array of parameters. New values will rewrite older
+     * Set array of parameters. New values will rewrite older.
+     *
      * @param array $params
+     *
      * @return request
      */
-    public function set_parameters(array $params) {
+    public function set_parameters(array $params)
+    {
         $this->_params = $params + $this->_params;
+
         return $this;
     }
 
     /**
      * @param string $url
-     * @param array $params
+     * @param array  $params
      */
-    public function __construct($url, array $params = array()) {
+    public function __construct($url, array $params = [])
+    {
         $this->_url = $url;
         $this->_params = $params;
     }
 
     /**
-     * Send request to Valve's servers
-     * @access public
+     * Send request to Valve's servers.
+     *
      * @return mixed
      */
-    public function send() {
+    public function send()
+    {
         $ch = curl_init();
         $url = $this->_url;
         $d = '';
         $this->_params['api_key'] = API_KEY;
-        foreach ($this->_params as $key=>$value) {
+        foreach ($this->_params as $key => $value) {
             $d .= $key.'='.$value.'&';
         }
         $d = rtrim($d, '&');
         $url .= '?'.$d;
-        
-		curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_ENCODING , "gzip");
+
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_ENCODING, 'gzip');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         //Ignore SSL warnings and questions
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
@@ -111,7 +131,8 @@ class request {
 
         $r = curl_exec($ch);
         curl_close($ch);
-		$r = json_decode($r, true);
+        $r = json_decode($r, true);
+
         return $r;
     }
 }
